@@ -1,0 +1,49 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class DAO {
+	List<Student> students;
+	List<Account> accounts;
+	
+	public DAO() {
+		initialDAO();
+	}
+
+	private void initialDAO() {
+		students = new ArrayList<>();
+		students.add(new Student(1122, "Nguyen Thi Hoa Hong", 7.8));
+		students.add(new Student(1111, "Tran Thanh Son", 9.4));
+		students.add(new Student(2222, "Nguyen Thi Le", 9));
+		students.add(new Student(1234, "Huynh Van Ba", 8.9));
+		
+		accounts = new ArrayList<>();
+		accounts.add(new Account("test", "12345"));
+	}
+
+	public boolean checkUsername(String username) {
+		for(Account acc : accounts) 
+			if(acc.username.equals(username)) return true;
+		return false;
+	}
+
+	public boolean checkPassword(String username, String password) {
+		for(Account acc : accounts) 
+			if(acc.username.equals(username) && acc.password.equals(password)) return true;
+		return false;
+	}
+
+	public List<Student> getStudentById(int id) {
+		List<Student> result = new ArrayList<>();
+		for(Student st : students)
+			if(st.id == id) result.add(st);
+		return result;
+	}
+
+	public List<Student> getStudentByName(String content) {
+		List<Student> result = new ArrayList<>();
+		for(Student st : students)
+			if(st.name.endsWith(content)) result.add(st);
+		return result;
+	}
+	
+}
